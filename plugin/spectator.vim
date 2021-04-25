@@ -82,9 +82,9 @@ function! s:SpecSkeleton(path) abort
   let template = ''
 
   if s:InLib(path)
-    let template .= "require '" . path . "'\n\n"
+    let template .= "require \"" . path . "\"\n\n"
   else
-    let template .= "require 'spec_helper'\n\n"
+    let template .= "require \"rails_helper\"\n\n"
   endif
 
   let non_rails_path = s:StripRailsLocation(fnamemodify(path, ':h'))
@@ -93,9 +93,8 @@ function! s:SpecSkeleton(path) abort
 
   let class_name = s:Camelize(fnamemodify(path, ':t'))
 
-  let template .= 'module ' . join(modules, '::') . "\n"
-  let template .= "describe " . class_name . " do\n"
-  let template .= "it '' do\n"
+  let template .= 'describe "' . join(modules, '::') . '::' . class_name . '" do' . "\n"
+  let template .= "it \"\" do\n"
   let template .= "end\n"
   let template .= "end\n"
   let template .= "end"

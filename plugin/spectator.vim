@@ -93,7 +93,13 @@ function! s:SpecSkeleton(path) abort
 
   let class_name = s:Camelize(fnamemodify(path, ':t'))
 
-  let template .= 'describe "' . join(modules, '::') . '::' . class_name . '" do' . "\n"
+  let template .= 'describe ' . join(modules, '::') . '::' . class_name . ' do' . "\n"
+  let template .= 'subject { described_class.call(input) }' . "\n"
+  let template .= "\n"
+  let template .= 'let(:input) do' . "\n"
+  let template .= '{' . "\n"
+  let template .= '}' . "\n"
+  let template .= "\n"
   let template .= "it \"\" do\n"
   let template .= "end\n"
   let template .= "end\n"

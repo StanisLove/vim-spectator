@@ -99,9 +99,9 @@ function! s:SpecSkeleton(path) abort
   let template .= 'let(:input) do' . "\n"
   let template .= '{' . "\n"
   let template .= '}' . "\n"
+  let template .= "end\n"
   let template .= "\n"
   let template .= "it \"\" do\n"
-  let template .= "end\n"
   let template .= "end\n"
   let template .= "end"
 
